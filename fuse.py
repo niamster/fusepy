@@ -976,4 +976,5 @@ class LoggingMixIn:
             ret = str(e)
             raise
         finally:
-            self.log.debug('<- %s %s', op, repr(ret))
+            ret = repr(ret) if not isinstance(ret, basestring) else 'buf[len={}]'.format(len(ret))
+            self.log.debug('<- %s %s', op, ret)
